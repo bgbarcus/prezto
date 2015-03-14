@@ -56,5 +56,7 @@ bindkey -M viins ' ' magic-space
 
 export PATH=/usr/local/bin:/bin:/usr/bin:/sbin:/usr/sbin
 
-export PS1="$ "
-export RPS1="%~"
+#export PS1="$ "
+#export RPS1="%~"
+
+unalias rm
