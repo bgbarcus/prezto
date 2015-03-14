@@ -60,3 +60,6 @@ export PATH=/usr/local/bin:/bin:/usr/bin:/sbin:/usr/sbin
 #export RPS1="%~"
 
 unalias rm
+unalias ls
+
+alias ls="ls -F"
