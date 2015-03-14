@@ -11,3 +11,50 @@ if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
 fi
 
 # Customize to your needs...
+
+# pipe to multiple outputs
+setopt MULTIOS
+
+# change cd to pushd
+setopt AUTO_PUSHD
+
+# turn off pushd messages
+setopt PUSHD_SILENT
+
+# blank pushd goes to home
+setopt PUSHD_TO_HOME
+
+# ten second wait when deleting everything
+setopt RM_STAR_WAIT
+
+# use magic (this is the default)
+setopt ZLE
+
+# flow control - Ctrl+S
+setopt NO_FLOW_CONTROL
+
+# prevent "echo "station" > station from clobbering station
+setopt NO_CLOBBER
+
+# other globbing stuff - don't know what these are yet
+setopt NUMERIC_GLOB_SORT
+setopt EXTENDED_GLOB
+
+# vi style incremental search at the command line
+bindkey -M vicmd "/" history-incremental-search-backward
+bindkey -M vicmd "?" history-incremental-search-forward
+
+# search based on what has already been typed
+bindkey -M vicmd "//" history-beginning-search-backward
+bindkey -M vicmd "??" history-beginning-search-forward
+
+# recommended without explanation
+bindkey -M vicmd "q" push-line
+
+# get completion even with spaces in names
+bindkey -M viins ' ' magic-space
+
+export PATH=/usr/local/bin:/bin:/usr/bin:/sbin:/usr/sbin
+
+export PS1="$ "
+export RPS1="%~"
