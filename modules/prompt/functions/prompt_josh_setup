@@ -70,7 +70,7 @@ function prompt_josh_setup
     zstyle ':prezto:module:git:info:branch' format '%F{green}%b%f'
     zstyle ':prezto:module:git:info:commit' format ':%F{green}%.7c%f'
     zstyle ':prezto:module:git:info:deleted' format ' %%B%F{red}D%f%%b'
-    zstyle ':prezto:module:git:info:modified' format ' %%B%F{blue}M%f%%b'
+    zstyle ':prezto:module:git:info:modified' format ' %%B%F{yellow}M%f%%b'
     zstyle ':prezto:module:git:info:position' format ':%F{red}%p%f'
     zstyle ':prezto:module:git:info:renamed' format ' %%B%F{magenta}R%f%%b'
     zstyle ':prezto:module:git:info:stashed' format ' %%B%F{cyan}S%f%%b'
