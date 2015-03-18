@@ -38,6 +38,9 @@ setopt NO_CLOBBER
 
 # other globbing stuff - don't know what these are yet
 setopt NUMERIC_GLOB_SORT
+
+# allows       "ls **/**substr**" 
+# to work like "find . -type f -name "*substr*" -print"
 setopt EXTENDED_GLOB
 
 # vi style incremental search at the command line
