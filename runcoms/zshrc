@@ -4,6 +4,7 @@
 # Authors:
 #   Sorin Ionescu <sorin.ionescu@gmail.com>
 #
+# Sourced for interactive shells.
 
 # Source Prezto.
 if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
@@ -61,15 +62,14 @@ bindkey -M vicmd "q" push-line
 # get completion even with spaces in names
 bindkey -M viins ' ' magic-space
 
-export PATH=/usr/local/bin:/bin:/usr/bin:/sbin:/usr/sbin
-
-#export PS1="$ "
-#export RPS1="%~"
-
 unalias rm
 
 alias ls="ls -F"
-alias tmux="tmux -u"
+alias ps="ps --forest"
 alias hostname="hostname -f"
+alias tmux="tmux -u"
+
+export EDITOR=vim
+export VISUAL=vim
 
 . ${HOME}/.zshrc-local-settings
