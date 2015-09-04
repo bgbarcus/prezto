@@ -11,6 +11,14 @@ if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
   source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
 fi
 
+# Source Vim autowrite plugin support.  Causes autowrite when any command 
+# is entered on the command line in a tmux session.  All Vim sessions are 
+# signaled to save all buffers.
+#
+# Still needs work.
+# https://github.com/pivotal/tmux-config
+#source ~/.vim/bundle/tmux-config/tmux-autowrite/autowrite-vim.sh
+
 # Customize to your needs...
 
 # pipe to multiple outputs
@@ -64,9 +72,10 @@ bindkey -M viins ' ' magic-space
 
 unalias rm
 
-alias ls="ls -F"
-alias ps="ps --forest"
 alias hostname="hostname -f"
+alias ls="ls -F"
+alias man="pinfo -m"
+alias ps="ps --forest"
 alias tmux="tmux -u"
 
 export EDITOR=vim
