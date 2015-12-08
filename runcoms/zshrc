@@ -75,6 +75,7 @@ unalias rm
 alias hostname="hostname -f"
 alias ls="ls -F"
 alias man="pinfo -m"
+alias less="less -NS"
 alias ps="ps --forest"
 alias tmux="tmux -u"
 
