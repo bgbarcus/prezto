@@ -70,6 +70,15 @@ bindkey -M vicmd "q" push-line
 # get completion even with spaces in names
 bindkey -M viins ' ' magic-space
 
+#--------------------------------------------
+# Enable and setup shell functions like zftp.
+fpath=(~/zsh-functions $fpath)
+autoload -Uz zfinit zcalc ztodo
+zfinit
+chpwd() { ztodo }
+# Enable and setup shell functions like zftp.
+#--------------------------------------------
+
 unalias rm
 
 alias hostname="hostname -f"
