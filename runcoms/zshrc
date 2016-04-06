@@ -111,7 +111,3 @@ transfer()
     cat $tmpfile;
     rm -f $tmpfile; 
 } 
-
-if [ -f $HOME/.zshrc-local-settings ] ; then
-    . $HOME/.zshrc-local-settings
-fi
