@@ -9,6 +9,8 @@
 # Recommended use is setting environment variables.
 #
 
+print "running .zshenv"
+
 # Ensure that a non-login, non-interactive shell has a defined environment.
 if [[ "$SHLVL" -eq 1 && ! -o LOGIN && -s "${ZDOTDIR:-$HOME}/.zprofile" ]]; then
   source "${ZDOTDIR:-$HOME}/.zprofile"
@@ -21,8 +23,8 @@ fi
 #
 # Editors
 #
-export EDITOR='nano'
-export VISUAL='nano'
+export EDITOR='vim'
+export VISUAL='vim'
 export PAGER='less'
 
 #
@@ -40,18 +42,17 @@ typeset -gU cdpath fpath mailpath path
 
 # Set the the list of directories that cd searches.
 cdpath=(
-   $cdpath
-)
+    $cdpath
+    )
 
-#
-# Moved to .zlogin so $HOME can be moved before the Redhat devtools-2 directory.
-#
 # Set the list of directories that Zsh searches for programs.
-#path=(
-#  $HOME/bin
-#  /usr/local/{bin,sbin}
-#  $path
-#)
+path=(
+    $HOME/bin
+    /usr/local/{bin,sbin}
+    $path
+    /opt/android-studio/bin
+    /usr/local/go/bin
+    )
 
 #
 # Less
@@ -67,16 +68,9 @@ if (( $#commands[(i)lesspipe(|.sh)] )); then
   export LESSOPEN="| /usr/bin/env $commands[(i)lesspipe(|.sh)] %s 2>&-"
 fi
 
-#
-# Temporary Files
-#
-if [[ -d "/data/$LOGNAME/tmp" ]]; then
-    export TMPDIR="/data/$LOGNAME/tmp"
-else
-    if [[ ! -d "$TMPDIR" ]]; then
-        export TMPDIR="/tmp/$LOGNAME"
-        mkdir -p -m 700 "$TMPDIR"
-    fi
-fi
-
 TMPPREFIX="${TMPDIR%/}/zsh"
+
+# Used by drive (CLI Google Drive client).
+# https://github.com/odeke-em/drive
+export GOPATH=$HOME/goworkspace
+export GOROOT=/usr/local/go

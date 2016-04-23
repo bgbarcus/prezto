@@ -5,28 +5,7 @@
 #   Sorin Ionescu <sorin.ionescu@gmail.com>
 #
 
-
-#--------------------------------------------------------------------------------------------------
-# bgb
-#--------------------------------------------------------------------------------------------------
-# Start by adding usr/local to the path before devtools-2 gets added. 
-# This allows devtools-2 to override usr/local.
-#
-# Set the list of directories that Zsh searches for programs.
-path=(
-  /usr/local/{bin,sbin}
-  $path
-)
-
-#--------------------------------------------------------------------------------------------------
-# bgb
-#--------------------------------------------------------------------------------------------------
-# Added devtools-2 to the environment to pick up gcc 4.8
-#
-# Start environment allowing access to g++ 4.8.
-# scl enable devtoolset-2 zsh
-. /opt/rh/devtoolset-2/enable
-
+print "running .zlogin"
 
 # Execute code that does not affect the current session in the background.
 {

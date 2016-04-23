@@ -6,6 +6,8 @@
 #
 # Sourced for interactive shells.
 
+print "running .zshrc"
+
 # Source Prezto.
 if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
   source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
@@ -73,7 +75,9 @@ bindkey -M viins ' ' magic-space
 #--------------------------------------------
 # Enable and setup shell functions like zftp.
 fpath=(~/zsh-functions $fpath)
-autoload -Uz zfinit zcalc ztodo
+autoload -Uz zfinit zcalc ztodo promptinit
+promptinit
+prompt josh
 zfinit
 chpwd() { ztodo }
 # Enable and setup shell functions like zftp.
@@ -88,10 +92,7 @@ alias less="less -NS"
 alias ps="ps --forest"
 alias tmux="tmux -u"
 
-export EDITOR=vim
-export VISUAL=vim
-
-# Add this to .bashrc or its equivalent 
+# send file to https://transfer.sh
 transfer()
 {
     if [ $# -eq 0 ]; then 
@@ -111,3 +112,29 @@ transfer()
     cat $tmpfile;
     rm -f $tmpfile; 
 } 
+
+# Take over an existing tmux session and push other clients
+# to a temporary session.  This allows the window size to 
+# match the current client.
+takeover()
+{
+    # create a temporary session that displays the "how to go back" message
+    tmp='takeover temp session'
+
+    if ! tmux has-session -t "$tmp"; then
+        tmux new-session -d -s "$tmp"
+        tmux set-option -t "$tmp" set-remain-on-exit on
+        tmux new-window -kt "$tmp":0 \
+        'echo "Use Prefix + L (i.e. ^B L) to return to session."'
+    fi
+
+    # switch any clients attached to the target session to the temp session
+    session="$1"
+
+    for client in $(tmux list-clients -t "$session" | cut -f 1 -d :); do
+        tmux switch-client -c "$client" -t "$tmp"
+    done
+
+    # attach to the target session
+    tmux attach -t "$session"
+}
