@@ -116,7 +116,7 @@ transfer()
 # Take over an existing tmux session and push other clients
 # to a temporary session.  This allows the window size to 
 # match the current client.
-takeover()
+tmux-takeover()
 {
     # create a temporary session that displays the "how to go back" message
     tmp='takeover temp session'
