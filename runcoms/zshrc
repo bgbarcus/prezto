@@ -6,6 +6,8 @@
 #
 # Sourced for interactive shells.
 
+#print "running zshrc"
+
 # Source Prezto.
 if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
   source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
@@ -79,17 +81,14 @@ chpwd() { ztodo }
 # Enable and setup shell functions like zftp.
 #--------------------------------------------
 
-unalias rm
-
+#
+# Set aliases.
+#
 alias hostname="hostname -f"
 alias ls="ls -F"
 alias man="pinfo -m"
-alias less="less -NS"
 alias ps="ps --forest"
 alias tmux="tmux -u"
-
-export EDITOR=vim
-export VISUAL=vim
 
 # Add this to .bashrc or its equivalent 
 transfer()

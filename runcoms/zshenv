@@ -9,6 +9,8 @@
 # Recommended use is setting environment variables.
 #
 
+#print "running zshenv"
+
 # Ensure that a non-login, non-interactive shell has a defined environment.
 if [[ "$SHLVL" -eq 1 && ! -o LOGIN && -s "${ZDOTDIR:-$HOME}/.zprofile" ]]; then
   source "${ZDOTDIR:-$HOME}/.zprofile"
@@ -21,8 +23,8 @@ fi
 #
 # Editors
 #
-export EDITOR='nano'
-export VISUAL='nano'
+export EDITOR='vim'
+export VISUAL='vim'
 export PAGER='less'
 
 #
@@ -47,11 +49,10 @@ cdpath=(
 # Moved to .zlogin so $HOME can be moved before the Redhat devtools-2 directory.
 #
 # Set the list of directories that Zsh searches for programs.
-#path=(
-#  $HOME/bin
-#  /usr/local/{bin,sbin}
-#  $path
-#)
+path=(
+    /usr/local/{bin,sbin}
+    $path
+    )
 
 #
 # Less
@@ -70,8 +71,10 @@ fi
 #
 # Temporary Files
 #
-if [[ -d "/data/$LOGNAME/tmp" ]]; then
-    export TMPDIR="/data/$LOGNAME/tmp"
+if [[ -d "/data/tmp" ]]; then
+    export TMPDIR="/data/tmp"
+elif [[ -d "/data/$LOGNAME/tmp/tmp" ]]; then
+    export TMPDIR="/data/$LOGNAME/tmp/tmp"
 else
     if [[ ! -d "$TMPDIR" ]]; then
         export TMPDIR="/tmp/$LOGNAME"
@@ -80,3 +83,28 @@ else
 fi
 
 TMPPREFIX="${TMPDIR%/}/zsh"
+
+export LD_LIBRARY_PATH=/usr/local/lib:$LD_LIBRARY_PATH
+export LD_RUN_PATH=/usr/local/lib:$LD_RUN_PATH
+
+#export http_proxy="http://10.40.14.56:8080"
+#export https_proxy="http://10.40.14.56:8080"
+#export ftp_proxy="http://10.40.14.56:8080"
+export http_proxy="http://167.76.56.36:911"
+export https_proxy="http://167.76.56.36:911"
+export ftp_proxy="http://167.76.56.36:911"
+export no_proxy=".ten.thomsonreuters.com,stldevnet.reuters.com,.ime.reuters.com,.int.thomsonreuters.com"
+
+export CMAKE_MODULE_PATH=$HOME/src/upg_collections/cmake_scripts/CMakeBase
+export CMAKE_PREFIX_PATH="$HOME/CMakePrefixPath"
+export RDFD_UPDATE_LOCAL_PACKAGES="TRUE"
+
+export CPPFLAGS=-std=c++11
+
+export _JAVA_OPTIONS='-Dawt.useSystemAAFontSettings=lcd -Dswing.aatext=true'
+
+# 
+# Set core dump file size to unlimited.
+#
+ulimit -c unlimited
+umask 002
