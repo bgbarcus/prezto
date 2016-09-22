@@ -6,7 +6,7 @@
 #
 # Sourced for interactive shells.
 
-print "running .zshrc"
+#print "running .zshrc"
 
 # Source Prezto.
 if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
@@ -88,9 +88,10 @@ unalias rm
 alias hostname="hostname -f"
 alias ls="ls -F"
 alias man="pinfo -m"
-alias less="less -NS"
 alias ps="ps --forest"
 alias tmux="tmux -u"
+alias setclip="/usr/local/bin/xclip -selection c"
+alias getclip="/usr/local/bin/xclip -selection clipboard -o"
 
 # send file to https://transfer.sh
 transfer()

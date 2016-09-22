@@ -7,4 +7,6 @@
 # Intended to be similar to ksh.  Per-shell settings belong in .zshrc.
 #
 
-print "running .zprofile"
+#print "running .zprofile"
+
+source ~/.zpath

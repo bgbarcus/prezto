@@ -9,15 +9,27 @@
 # Recommended use is setting environment variables.
 #
 
-print "running .zshenv"
+#print "running .zshenv"
 
 # Ensure that a non-login, non-interactive shell has a defined environment.
-if [[ "$SHLVL" -eq 1 && ! -o LOGIN && -s "${ZDOTDIR:-$HOME}/.zprofile" ]]; then
-  source "${ZDOTDIR:-$HOME}/.zprofile"
+# Some people insist on setting their PATH here to affect things like ssh.
+# Those that do should probably use $SHLVL to ensure that this only happens
+# the first time the shell is started (to avoid overriding a customized
+# environment).  Also, the various profile/rc/login files all get sourced
+# *after* this file, so they will override this value.  One solution is to
+# put your path-setting code into a file named .zpath, and source it from
+# both here (if we're not a login shell) and from the .zprofile file (which
+# is only sourced if we are a login shell).
+if [[ "$SHLVL" -eq 1 && ! -o LOGIN ]]; then
+    if [[ -s "${ZDOTDIR:-$HOME}/.zprofile" ]]; then
+        source "${ZDOTDIR:-$HOME}/.zprofile" # .zprofile also sources .zpath
+    elif [[ -s "${ZDOTDIR:-$HOME}/.zpath" ]]; then
+        source "${ZDOTDIR:-$HOME}/.zpath"
+    fi
 fi
 
 if [[ "$OSTYPE" == darwin* ]]; then
-  export BROWSER='open'
+    export BROWSER='open'
 fi
 
 #
@@ -31,7 +43,7 @@ export PAGER='less'
 # Language
 #
 if [[ -z "$LANG" ]]; then
-  export LANG='en_US.UTF-8'
+    export LANG='en_US.UTF-8'
 fi
 
 #
@@ -39,20 +51,6 @@ fi
 #
 # Ensure path arrays do not contain duplicates.
 typeset -gU cdpath fpath mailpath path
-
-# Set the the list of directories that cd searches.
-cdpath=(
-    $cdpath
-    )
-
-# Set the list of directories that Zsh searches for programs.
-path=(
-    $HOME/bin
-    /usr/local/{bin,sbin}
-    $path
-    /opt/android-studio/bin
-    /usr/local/go/bin
-    )
 
 #
 # Less
@@ -65,7 +63,7 @@ export LESS='-F -g -i -M -R -S -w -X -z-4'
 # Set the Less input preprocessor.
 # Try both `lesspipe` and `lesspipe.sh` as either might exist on a system.
 if (( $#commands[(i)lesspipe(|.sh)] )); then
-  export LESSOPEN="| /usr/bin/env $commands[(i)lesspipe(|.sh)] %s 2>&-"
+    export LESSOPEN="| /usr/bin/env $commands[(i)lesspipe(|.sh)] %s 2>&-"
 fi
 
 TMPPREFIX="${TMPDIR%/}/zsh"
@@ -74,3 +72,10 @@ TMPPREFIX="${TMPDIR%/}/zsh"
 # https://github.com/odeke-em/drive
 export GOPATH=$HOME/goworkspace
 export GOROOT=/usr/local/go
+
+# Compiler/Linker
+#export CXXFLAGS="-std=c++11 -pthread"
+export LIBDIR=/usr/local/lib64
+export CXXFLAGS="-std=c++1z -L${LIBDIR} -pthread"
+export LD_LIBRARY_PATH=${LIBDIR}:${LD_LIBRARY_PATH}
+export LD_RUN_PATH=${LIBDIR}:${LD_RUN_PATH}
