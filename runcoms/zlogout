@@ -4,6 +4,7 @@
 # Authors:
 #   Sorin Ionescu <sorin.ionescu@gmail.com>
 #
+# Source as a login shell exits.
 
 # Print the message.
 cat <<-EOF

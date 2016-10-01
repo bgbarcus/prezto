@@ -5,7 +5,7 @@
 #   Sorin Ionescu <sorin.ionescu@gmail.com>
 #
 # Sourced for all shells, including non-interactive shells.  
-# Do not assume any tty is available.
+# Do not use any commands that produce output or assume a tty is attached.
 # Recommended use is setting environment variables.
 #
 
@@ -71,7 +71,7 @@ TMPPREFIX="${TMPDIR%/}/zsh"
 # Used by drive (CLI Google Drive client).
 # https://github.com/odeke-em/drive
 export GOPATH=$HOME/goworkspace
-export GOROOT=/usr/local/go
+export GOROOT=$HOME/src/go
 
 # Compiler/Linker
 #export CXXFLAGS="-std=c++11 -pthread"
@@ -79,3 +79,9 @@ export LIBDIR=/usr/local/lib64
 export CXXFLAGS="-std=c++1z -L${LIBDIR} -pthread"
 export LD_LIBRARY_PATH=${LIBDIR}:${LD_LIBRARY_PATH}
 export LD_RUN_PATH=${LIBDIR}:${LD_RUN_PATH}
+
+# DO NOT SET MANPATH.
+# /etc/man.conf contains wildcard search rule to find man pages, but 
+# those rules will be ignored if a MANPATH environment variable is set.
+# Make sure MANPATH has /usr/local pages included.
+# https://github.com/sorin-ionescu/prezto/issues/383

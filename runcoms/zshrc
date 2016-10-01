@@ -5,6 +5,7 @@
 #   Sorin Ionescu <sorin.ionescu@gmail.com>
 #
 # Sourced for interactive shells.
+# Should set up aliases, functions, options, key bindings, etc.
 
 #print "running .zshrc"
 
@@ -85,6 +86,7 @@ chpwd() { ztodo }
 
 unalias rm
 
+alias which="which -a"
 alias hostname="hostname -f"
 alias ls="ls -F"
 alias man="pinfo -m"
@@ -93,7 +95,115 @@ alias tmux="tmux -u"
 alias setclip="/usr/local/bin/xclip -selection c"
 alias getclip="/usr/local/bin/xclip -selection clipboard -o"
 
+##################################################################################################
+# zsh functions
+# Copied from http://zsh.sourceforge.net/Contrib/startup/users/debbiep/dot.zshenv
+#
+# Most functions are auto-loaded later on, but some are defined
+# explicitly since they're needed by the startup files and would
+# automatically be loaded in any case.
+##################################################################################################
+# rationalize-path()
+# Later we'll need to trim down the paths that follow because the ones given
+# here are for all my accounts, some of which have unusual paths in them.
+# rationalize-path will remove nonexistent directories from an array.
+rationalize-path()
+{             
+	# Note that this works only on arrays, not colon-delimited strings.
+	# Not that this is a problem now that there is typeset -T.
+	local element
+	local build
+	build=()
+
+	# Evil quoting to survive an eval and to make sure that
+	# this works even with variables containing IFS characters, if I'm
+	# crazy enough to setopt shwordsplit.
+	eval '
+		foreach element in "$'"$1"'[@]"
+		do
+			if [[ -d "$element" ]]
+			then
+  	  			build=("$build[@]" "$element")
+			fi
+		done
+		'"$1"'=( "$build[@]" )
+	'
+}
+##################################################################################################
+# zsh-version
+# Return true (0) if the running version of ZSH is equal to or more recent than 
+# the one requested.  I need this because of all the bleeding-edge zsh features 
+# I use here. :)  Cache the results for speed, if associative arrays are 
+# available.  The zsh distribution comes with the is-at-least function to do the
+# same job, but I'd already written this before I found that out. :)
+zsh-version()
+{
+	# If this result is cached . . 
+	if [[ ${+zshversioncache} -eq 1 && ${+zshversioncache[$1]} -eq 1 ]]
+	then
+		return $zshversioncache[$1]
+	fi
+
+	local running
+	local wanted
+
+	# Split the things to compare into two arrays.
+	running=(${(s:.:)ZSH_VERSION})
+	wanted=(${(s:.:)1})
+
+	# Compare parts until we have an answer.
+	while [[ $#running -gt 0 ]]
+	do
+		# Now compare each first part.
+		if [[ $running[1] -lt $wanted[1] ]]
+		then
+  	  		if [[ ${+zshversioncache} -eq 1 ]]
+  	  		then
+     	 		zshversioncache[$1]=1
+  	  		fi
+  	  		return 1    # Failure, want more recent than we have
+		elif [[ $running[1] -gt $wanted[1] ]]
+		then
+  	  		if [[ ${+zshversioncache} -eq 1 ]]
+  	  		then
+     	 		zshversioncache[$1]=0
+  	  		fi
+  	  		return 0    # Success, running newer version
+		else
+  	  		shift running  # Look at next part of version
+  	  		shift wanted
+		fi
+	done
+	if [[ $#wanted -gt 0 ]]
+	then
+		if [[ ${+zshversioncache} -eq 1 ]]
+		then
+   	   		zshversioncache[$1]=1
+		fi
+		return 1  # Failure, wanted version has an extra part and is thus later
+	else
+		if [[ ${+zshversioncache} -eq 1 ]]
+		then
+   	   		zshversioncache[$1]=0
+		fi
+		return 0  # Exactly the same version
+	fi
+}
+
+if zsh-version 3.1.6
+then
+	# Associative arrays are available.
+	typeset -A zshversioncache
+	zshversioncache=( )
+fi
+#
+# End of functions copied from http://zsh.sourceforge.net/Contrib/startup/users/debbiep/dot.zshenv
+##################################################################################################
+
+#------------------------------------------------
+# Copied from instructions on https://transfer.sh
 # send file to https://transfer.sh
+#------------------------------------------------
 transfer()
 {
     if [ $# -eq 0 ]; then 

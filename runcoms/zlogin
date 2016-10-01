@@ -4,6 +4,12 @@
 # Authors:
 #   Sorin Ionescu <sorin.ionescu@gmail.com>
 #
+# Sourced in login shells.
+# Should contain commands that should only be executed in login shells.
+# Avoid putting anything in here that might create a fork bomb.
+# Should not do anything here that changes the shell environment.
+# Sourced before .zshrc.
+# .zprofile is an alternative to .zlogin to be familiar to ksh users.
 
 #print "running .zlogin"
 
@@ -33,6 +39,7 @@ fi
 #
 # Set the list of directories that Zsh searches for programs.
 path=(
+  $HOME/src/go/bin
   $HOME/bin
   $path
 )

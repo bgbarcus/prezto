@@ -9,4 +9,6 @@
 
 #print "running .zprofile"
 
-source ~/.zpath
+if [[ -e ~/.zpath ]] ; then
+	source ~/.zpath
+fi
