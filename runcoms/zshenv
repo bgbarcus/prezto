@@ -85,3 +85,4 @@ export LD_RUN_PATH=${LIBDIR}:${LD_RUN_PATH}
 # those rules will be ignored if a MANPATH environment variable is set.
 # Make sure MANPATH has /usr/local pages included.
 # https://github.com/sorin-ionescu/prezto/issues/383
+unset MANPATH
