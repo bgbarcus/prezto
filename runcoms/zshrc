@@ -82,13 +82,34 @@ chpwd() { ztodo }
 #--------------------------------------------
 
 #
+# Remove aliases set by system.
+#
+unalias gm gmC gmF gma gmt gp gpA gpa gpc gpf gpp 
+unalias gpt gr gra grc gri grs gs gsL gsS gsX gsa
+unalias gsd gsl gsp gsr gss gsw gsx gwC gwc gwD
+unalias gwd gwR gwr gwS gws gwX gwx gCO gCT gCa
+unalias gR gRa gRb gRl gRm gRp gRs gRu gRx gS gSI
+unalias gSa gSf gSi gSl gSm gSs gSu gSx gb gbL gbM
+unalias gbS gbX gbc gbl gbm gbs gbx gc gcF gcO gcP
+unalias gcR gca gcf gcl gcm gco gcp gcr gcs gd gdc
+unalias gdi gdk gdm gdu gdx gf gfc gfm gfr gg ggL
+unalias ggi ggl ggv ggw giA giD giR giX gia gid
+unalias gir giu gix gl glb glc gld glg glo gls
+unalias gCe gCl gCo gCt
+unalias _ 1 2 3 4 5 6 7 8 9 b o p rsync d df du
+unalias l l. la lc lk ll lm ln lr ls lt lu lx sl
+unalias get mkdir mv pu po
+
+#
 # Set aliases.
 #
 alias hostname="hostname -f"
-alias ls="ls -F"
+alias ls="ls -hF"
 alias man="pinfo -m"
 alias ps="ps --forest"
+#alias tig="tig --all"
 alias tmux="tmux -u"
+alias which="which -a"
 
 # Add this to .bashrc or its equivalent 
 transfer()

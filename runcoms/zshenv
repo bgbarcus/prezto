@@ -52,6 +52,7 @@ cdpath=(
 path=(
     /usr/local/{bin,sbin}
     $path
+    /usr/local/ccollab-client
     )
 
 #
@@ -95,13 +96,16 @@ export https_proxy="http://167.76.56.36:911"
 export ftp_proxy="http://167.76.56.36:911"
 export no_proxy=".ten.thomsonreuters.com,stldevnet.reuters.com,.ime.reuters.com,.int.thomsonreuters.com"
 
-export CMAKE_MODULE_PATH=$HOME/src/upg_collections/cmake_scripts/CMakeBase
+export CMAKE_MODULE_PATH="$HOME/cmake_scripts/CMakeBase"
 export CMAKE_PREFIX_PATH="$HOME/CMakePrefixPath"
 export RDFD_UPDATE_LOCAL_PACKAGES="TRUE"
 
 export CPPFLAGS=-std=c++11
 
 export _JAVA_OPTIONS='-Dawt.useSystemAAFontSettings=lcd -Dswing.aatext=true'
+
+# Disable GUI prompt so it defaults to command line.
+unset SSH_ASKPASS
 
 # 
 # Set core dump file size to unlimited.
