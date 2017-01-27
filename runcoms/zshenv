@@ -96,7 +96,7 @@ export https_proxy="http://167.76.56.36:911"
 export ftp_proxy="http://167.76.56.36:911"
 export no_proxy=".ten.thomsonreuters.com,stldevnet.reuters.com,.ime.reuters.com,.int.thomsonreuters.com"
 
-export CMAKE_MODULE_PATH="$HOME/cmake_scripts/CMakeBase"
+#export CMAKE_MODULE_PATH="$HOME/cmake_scripts/CMakeBase"
 export CMAKE_PREFIX_PATH="$HOME/CMakePrefixPath"
 export RDFD_UPDATE_LOCAL_PACKAGES="TRUE"
 

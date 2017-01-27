@@ -111,6 +111,8 @@ alias ps="ps --forest"
 alias tmux="tmux -u"
 alias which="which -a"
 
+unset SSH_ASKPASS
+
 # Add this to .bashrc or its equivalent 
 transfer()
 {
