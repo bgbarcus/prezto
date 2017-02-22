@@ -50,6 +50,7 @@ cdpath=(
 #
 # Set the list of directories that Zsh searches for programs.
 path=(
+    $HOME/usr/local/{bin,sbin}
     /usr/local/{bin,sbin}
     $path
     /usr/local/ccollab-client
@@ -85,8 +86,8 @@ fi
 
 TMPPREFIX="${TMPDIR%/}/zsh"
 
-export LD_LIBRARY_PATH=/usr/local/lib:$LD_LIBRARY_PATH
-export LD_RUN_PATH=/usr/local/lib:$LD_RUN_PATH
+export LD_LIBRARY_PATH=$HOME/usr/local/lib:/usr/local/lib:$LD_LIBRARY_PATH
+export LD_RUN_PATH=$HOME/usr/local/lib:/usr/local/lib:$LD_RUN_PATH
 
 #export http_proxy="http://10.40.14.56:8080"
 #export https_proxy="http://10.40.14.56:8080"
@@ -100,7 +101,7 @@ export no_proxy=".ten.thomsonreuters.com,stldevnet.reuters.com,.ime.reuters.com,
 export CMAKE_PREFIX_PATH="$HOME/CMakePrefixPath"
 export RDFD_UPDATE_LOCAL_PACKAGES="TRUE"
 
-export CPPFLAGS=-std=c++11
+export CPPFLAGS="-std=c++11  -Wall -Werror -Wextra -Wpedantic"
 
 export _JAVA_OPTIONS='-Dawt.useSystemAAFontSettings=lcd -Dswing.aatext=true'
 
