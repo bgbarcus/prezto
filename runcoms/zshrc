@@ -15,11 +15,16 @@ fi
 
 # Source Vim autowrite plugin support.  Causes autowrite when any command 
 # is entered on the command line in a tmux session.  All Vim sessions are 
-# signaled to save all buffers.
-#
+# signaled to save all buffers.  https://github.com/pivotal/tmux-config
 # Still needs work.
-# https://github.com/pivotal/tmux-config
 #source ~/.vim/bundle/tmux-config/tmux-autowrite/autowrite-vim.sh
+
+#
+# Add git-flow completions.
+#
+if [[ -s "${HOME}/.git-flow-completion.zsh" ]] ; then
+    source ~/.git-flow-completion.zsh
+fi
 
 # Customize to your needs...
 
