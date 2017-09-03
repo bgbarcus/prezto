@@ -74,11 +74,20 @@ export GOPATH=$HOME/goworkspace
 export GOROOT=$HOME/src/go
 
 # Compiler/Linker
-#export CXXFLAGS="-std=c++11 -pthread"
 export LIBDIR=/usr/local/lib64
-export CXXFLAGS="-std=c++1z -L${LIBDIR} -pthread"
+#export CXXFLAGS="-std=c++11 -pthread -pthread"
+#export CXXFLAGS="-std=c++1z -L${LIBDIR} -pthread"
+export CXXFLAGS="-L${LIBDIR} -pthread"
 export LD_LIBRARY_PATH=${LIBDIR}:${LD_LIBRARY_PATH}
 export LD_RUN_PATH=${LIBDIR}:${LD_RUN_PATH}
+
+# Java as installed by /Slackware14.2/extra/java/java.SlackBuild
+export JAVA_HOME=/usr/lib64/java
+export MANPATH="${MANPATH}:${JAVA_HOME}/man"
+export PATH="${PATH}:${JAVA_HOME}/bin:${JAVA_HOME}/jre/bin"
+
+# Name of the default printer for lpr.
+export PRINTER=HL3170CDW
 
 # DO NOT SET MANPATH.
 # /etc/man.conf contains wildcard search rule to find man pages, but 
@@ -86,3 +95,6 @@ export LD_RUN_PATH=${LIBDIR}:${LD_RUN_PATH}
 # Make sure MANPATH has /usr/local pages included.
 # https://github.com/sorin-ionescu/prezto/issues/383
 unset MANPATH
+
+# Disable GUI password dialogs with SSH.
+unset SSH_ASKPASS

@@ -84,16 +84,23 @@ chpwd() { ztodo }
 # Enable and setup shell functions like zftp.
 #--------------------------------------------
 
+#--------------------------------------------
+# Add git-flow completions to the shell.
+#--------------------------------------------
+source ~/src/git-flow-completion/git-flow-completion.zsh
+#--------------------------------------------
+
 unalias rm
 
 alias which="which -a"
 alias hostname="hostname -f"
-alias ls="ls -F"
+alias ls="ls -hF"
 alias man="pinfo -m"
 alias ps="ps --forest"
 alias tmux="tmux -u"
-alias setclip="/usr/local/bin/xclip -selection c"
-alias getclip="/usr/local/bin/xclip -selection clipboard -o"
+alias setclip="/usr/bin/xclip -selection c"
+alias getclip="/usr/bin/xclip -selection clipboard -o"
+#alias rdesktop="/usr/bin/rdesktop -g 1280x1024"
 
 ##################################################################################################
 # zsh functions
