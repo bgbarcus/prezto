@@ -95,9 +95,14 @@ unalias rm
 alias which="which -a"
 alias hostname="hostname -f"
 alias ls="ls -hF"
-alias man="pinfo -m"
+
+pinfo_exists=$(/usr/bin/which pinfo)
+if [ "${pinfo_exists}" == "0" ] ; then
+	alias man="$(readlink -e $(which pinfo)) -m"
+fi
+
 alias ps="ps --forest"
-alias tmux="tmux -u"
+#alias tmux="tmux -u"
 alias setclip="/usr/bin/xclip -selection c"
 alias getclip="/usr/bin/xclip -selection clipboard -o"
 #alias rdesktop="/usr/bin/rdesktop -g 1280x1024"

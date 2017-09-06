@@ -39,8 +39,8 @@ fi
 #
 # Set the list of directories that Zsh searches for programs.
 path=(
-  $HOME/src/go/bin
   $HOME/bin
+  /usr/local/go/bin
   $path
 )
 

@@ -70,8 +70,8 @@ TMPPREFIX="${TMPDIR%/}/zsh"
 
 # Used by drive (CLI Google Drive client).
 # https://github.com/odeke-em/drive
-export GOPATH=$HOME/goworkspace
-export GOROOT=$HOME/src/go
+#export GOPATH=$HOME/goworkspace
+#export GOROOT=$HOME/src/go
 
 # Compiler/Linker
 export LIBDIR=/usr/local/lib64
