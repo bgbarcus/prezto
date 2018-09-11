@@ -12,10 +12,14 @@
 #--------------------------------------------------------------------------------------------------
 # Added devtools-2 to the environment to pick up gcc 4.8
 # Start environment allowing access to g++ 4.8.
-# Located here to avoid fork bombing myselse - enable loads a shell so
-# calling it from any script that is run when new shells start is bad.
-# scl enable devtoolset-2 zsh
-. /opt/rh/devtoolset-2/enable
+echo "############################################################"
+echo "#                                                          #"
+echo "# Did not automatically call devtoolset-2 enable.          #"
+echo "# To use devtoolset-2, source /opt/rh/devtoolset-2/enable. #"
+echo "#                                                          #"
+echo "############################################################"
+# . /opt/rh/devtoolset-2/enable
+
 unalias rm
 
 # Execute code that does not affect the current session in the background.
