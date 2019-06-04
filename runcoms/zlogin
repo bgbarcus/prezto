@@ -7,20 +7,7 @@
 
 #print "running zlogin"
 
-#--------------------------------------------------------------------------------------------------
-# bgb
-#--------------------------------------------------------------------------------------------------
-# Added devtools-2 to the environment to pick up gcc 4.8
-# Start environment allowing access to g++ 4.8.
-echo "############################################################"
-echo "#                                                          #"
-echo "# Did not automatically call devtoolset-2 enable.          #"
-echo "# To use devtoolset-2, source /opt/rh/devtoolset-2/enable. #"
-echo "#                                                          #"
-echo "############################################################"
-# . /opt/rh/devtoolset-2/enable
-
-unalias rm
+unalias rm 2>/dev/null
 
 # Execute code that does not affect the current session in the background.
 {
