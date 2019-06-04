@@ -120,6 +120,20 @@ transfer()
     rm -f $tmpfile; 
 } 
 
+# Update environment variables in an existing tmux shell.
+# When attaching to an existing session, tmux udpates its
+# global environment but does not push those changes into 
+# already running shells.
+function update-tmux-environment()
+{
+	if [ -n "${TMUX}" ]; then
+		eval "$(tmux show-environment -s)"
+	fi
+}
+
+# append update-tmux-environment function to the list of functions
+# invoked when creating a prompt.
+precmd_functions+=(update-tmux-environment)
 
 # Take over an existing tmux session and push other clients
 # to a temporary session.  This allows the window size to
